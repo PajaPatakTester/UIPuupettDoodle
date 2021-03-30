@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace PageObjects
 {
-   public class WizardGeneralInformationPage : PageBase
+    public class WizardGeneralInformationPage : PageBase
     {
         public async Task EnterTitle(string title)
         {
@@ -16,7 +13,15 @@ namespace PageObjects
         public async Task LocationSet(string location)
         {
             var inputField = await FindElementByCss("#d-pollLocation");
-            var property = await inputField.GetPropertyAsync("value");
+            await inputField.ClickAsync();
+            var locationSelector = await FindElementContainingText(location, "li.d-locationSuggestion");
+            await locationSelector.ClickAsync();
+        }
+
+        public async Task ContinueClick()
+        {
+            var btn = await FindElementByCss(".d-nextButton");
+            await btn.ClickAsync();
         }
     }
 }

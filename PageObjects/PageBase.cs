@@ -38,8 +38,11 @@ namespace PageObjects
             {
                 var loader = await FindElementByCss("div.d-loadingScreen");
                 var property = await loader.GetAttributeAsync("style");
-                var style = property.ToString();
-                if (style.Contains("display: none")) break;
+                if (property != null)
+                {
+                    var style = property.ToString();
+                    if (style.Contains("display: none")) break;
+                }
                 Thread.Sleep(TimeSpan.FromMilliseconds(300));
                 maxWaitSec -= 0.3;
             }

@@ -17,7 +17,7 @@ namespace Framework
 
         public static async Task Initialize()
         {
-            if (BrowserBase != null) return;
+            if (BrowserBase != null) await BrowserBase.CloseAsync();
             await DownloadBrowser();
 
             BrowserBase = await Puppeteer.LaunchAsync(new LaunchOptions
@@ -48,8 +48,6 @@ namespace Framework
         {
             if (BrowserBase == null) return;
             await BrowserBase.CloseAsync();
-            await BrowserBase.DisposeAsync();
-            BrowserBase = null;
         }
 
         public static async Task<string> TakeScreenshotAsync(string testName)
