@@ -32,18 +32,6 @@ namespace Framework
             PageBase.DefaultNavigationTimeout = (int)TimeSpan.FromSeconds(15).TotalMilliseconds;
         }
 
-        public static async Task Wait(double maxWaitSec, Task<bool> expression)
-        {
-            bool exp = await expression;
-            while (maxWaitSec > 0 && !exp)
-            {
-                Thread.Sleep(TimeSpan.FromMilliseconds(300));
-                maxWaitSec = -0.3;
-
-                Console.WriteLine($"Wait for it...");
-            }
-        }
-
         public static async Task Cleanup()
         {
             if (BrowserBase == null) return;

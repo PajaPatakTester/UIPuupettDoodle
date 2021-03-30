@@ -1,5 +1,4 @@
-﻿
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace PageObjects
 {
@@ -7,7 +6,7 @@ namespace PageObjects
     {
         public async Task ContinueClick()
         {
-            var btn = await FindElementByCss("#d-wizardOptionsNavigationView .d-nextButton");
+            var btn = await FindElementByCss("#d-wizardSettingsNavigationView .d-nextButton");
             await btn.ClickAsync();
         }
     }

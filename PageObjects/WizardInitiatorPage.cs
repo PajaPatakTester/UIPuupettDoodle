@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace PageObjects
 {
@@ -9,13 +6,13 @@ namespace PageObjects
     {
         public async Task EnterName(string name)
         {
-            var inputField = await FindElementByCss("#d-initiatorName");
+            var inputField = await FindElementByCss("input#d-initiatorName");
             await inputField.TypeAsync(name);
         }
 
         public async Task EnterEmail(string name)
         {
-            var inputField = await FindElementByCss("#d-initiatorEmailInput");
+            var inputField = await FindElementByCss("#d-initiatorEmailInput input");
             await inputField.TypeAsync(name);
         }
 

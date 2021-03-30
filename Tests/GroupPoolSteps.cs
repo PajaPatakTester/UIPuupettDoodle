@@ -20,6 +20,7 @@ namespace Tests
         private WizardOptionsPage _optionsPage = new WizardOptionsPage();
         private WizardSettingsPage _settingsPage = new WizardSettingsPage();
         private WizardInitiatorPage _initiatorPage = new WizardInitiatorPage();
+        private ParticipationPage _participationPage = new ParticipationPage();
 
         [Given(@"create his first doodle action")]
         public async Task GivenCreateHisFirstDoodleAction()
@@ -46,6 +47,8 @@ namespace Tests
         {
             var dictionary = CommonActions.TableToDictionary(table);
 
+            await _optionsPage.TextClick();
+
             await _optionsPage.EnterFirstOption(dictionary[1]);
             await _optionsPage.EnterSecondOption(dictionary[2]);
 
@@ -68,21 +71,29 @@ namespace Tests
         }
 
         [Then(@"invitation link should be created")]
-        public void ThenInvitationLinkShouldBeCreated()
+        public async Task ThenInvitationLinkShouldBeCreated()
         {
-            ScenarioContext.Current.Pending();
+            var fetchedLink = await _participationPage.FetchInvitationLink();
+            fetchedLink.Should().NotBeNullOrEmpty(because: "Link should be created, but it is not the case.");
         }
 
         [Then(@"participant name should be '(.*)'")]
-        public void ThenParticipantNameShouldBe(string p0)
+        public async Task ThenParticipantNameShouldBe(string name)
         {
-            ScenarioContext.Current.Pending();
+            var fetchedName = await _participationPage.FetchParticipantName();
+            fetchedName.Should().BeEquivalentTo(name, because: $"Participant should be \"{name}\", but it is not the case.");
         }
 
         [Then(@"pool options should be")]
-        public void ThenPoolOptionsShouldBe(Table table)
+        public async Task ThenPoolOptionsShouldBe(Table table)
         {
-            ScenarioContext.Current.Pending();
+            var dictionary = CommonActions.TableToDictionary(table);
+
+            var firstOption = await _participationPage.FetchAnOption(dictionary[1]);
+            firstOption.Should().NotBeNull(because: $"Option \"{dictionary[1]}\" should be present, but it is not the case.");
+
+            var secondOption = await _participationPage.FetchAnOption(dictionary[2]);
+            secondOption.Should().NotBeNull(because: $"Option \"{dictionary[2]}\" should be present, but it is not the case.");
         }
 
 

@@ -102,16 +102,46 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 5
- testRunner.Given("unregistred user reach home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("unregistred user initiate his first doodle action", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 6
- testRunner.And("create his first doodle action", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("set a title of the occasion", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                            "number",
+                            "option"});
+                table1.AddRow(new string[] {
+                            "1",
+                            "Every Monday"});
+                table1.AddRow(new string[] {
+                            "2",
+                            "Tomorrow"});
 #line 7
- testRunner.When("the two numbers are added", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("add text options:", ((string)(null)), table1, "And ");
 #line hidden
-#line 8
- testRunner.Then("the result should be 120", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 11
+ testRunner.And("skip Pool settings", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 12
+ testRunner.When("enter participant name \'TestUser\' and email address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 13
+ testRunner.Then("invitation link should be created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 14
+ testRunner.And("participant name should be \'TestUser\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                            "number",
+                            "option"});
+                table2.AddRow(new string[] {
+                            "1",
+                            "Every Monday"});
+                table2.AddRow(new string[] {
+                            "2",
+                            "Tomorrow"});
+#line 15
+ testRunner.And("pool options should be", ((string)(null)), table2, "And ");
 #line hidden
             }
             this.ScenarioCleanup();
