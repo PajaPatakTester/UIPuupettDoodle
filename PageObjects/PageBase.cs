@@ -32,11 +32,11 @@ namespace PageObjects
             await WebDriver.PageBase.WaitForSelectorAsync(css, waitForSelectorOptions);
         }
 
-        public async Task WaitForALoader(double maxWaitSec = 10)
+        public async Task WaitForLoader(double maxWaitSec = 10)
         {
             while (maxWaitSec > 0)
             {
-                var loader = await FindElementByCss("div.loderStyle");
+                var loader = await FindElementByCss("div.d-loadingScreen");
                 var property = await loader.GetAttributeAsync("style");
                 var style = property.ToString();
                 if (style.Contains("display: none")) break;

@@ -1,14 +1,24 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Framework;
 using PuppeteerSharp;
-using PuppeteerSharp.Contrib.Extensions;
-using PuppeteerSharp.Input;
 
 namespace PageObjects
 {
     public class HomePage : PageBase
     {
+        private const string Url = "https://www.doodle.com/en/";
 
+
+        public async Task GoTo()
+        {
+            await WebDriver.PageBase.GoToAsync(Url, 10000, waitUntil: new[] { WaitUntilNavigation.Networkidle0 });
+        }
+
+        public async Task CreateADoodleClick()
+        {
+            var button = await FindElementByCss("span.CreatePollMenu-createMenuLabel");
+            await button.ClickAsync();
+            await WaitForLoader();
+        }
     }
 }
